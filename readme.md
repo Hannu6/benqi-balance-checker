@@ -39,11 +39,11 @@ When run, the script performs the following steps:
 
 1. Connects to the Avalanche C-Chain using the provided RPC endpoint.
 2. Loads the ABI (Application Binary Interface) for BENQI core market contracts.
-3. For each wallet address specified in the configuration:
+3. For the wallet address specified in the configuration:
    a. Queries each BENQI core market contract for the wallet's balance.
    b. Retrieves the current exchange rate for the asset.
    c. Calculates the balance in the underlying asset and its USD value.
-4. Displays the results, showing each wallet's balances across different BENQI markets.
+4. Displays the results, showing wallet balances across different BENQI markets.
 
 ## Configuration
 Edit `main.py` to customize:
