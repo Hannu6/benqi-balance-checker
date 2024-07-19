@@ -18,7 +18,7 @@ This script connects to the Avalanche C-Chain and queries BENQI smart contracts 
 2. (Optional) Create and activate a virtual environment:
    ```
    python -m venv env
-   source benqi_env/bin/activate  # On Windows, use: benqi_env\Scripts\activate
+   source env/bin/activate  # On Windows, use: env\Scripts\activate
    ```
 3. Install dependencies:
    ```
