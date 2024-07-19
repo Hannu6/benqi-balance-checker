@@ -1,11 +1,12 @@
 from web3 import Web3
 import json
+import re
 
 # Avalanche RPC node
 RPC_URL = "https://api.avax.network/ext/bc/C/rpc"
 
 # Wallet address to check
-WALLET_ADDRESS = "0x08bfeD24D069D4d8dA1C02c83Da5669C185Eb75d"
+WALLET_ADDRESS = "0x123123123"
 
 # Unitroller address
 UNITROLLER_ADDRESS = "0x486Af39519B4Dc9a7fCcd318217352830E8AD9b4"
@@ -70,6 +71,12 @@ unitroller_contract = w3.eth.contract(address=UNITROLLER_ADDRESS, abi=unitroller
 
 # Initialize Oracle contract
 oracle_contract = w3.eth.contract(address=ORACLE_ADDRESS, abi=oracle_abi)
+
+def is_valid_ethereum_address(address):
+    # Check if the address is a valid Ethereum address
+    # It should be 42 characters long, start with '0x', and contain only hexadecimal characters
+    pattern = re.compile(r'^0x[a-fA-F0-9]{40}$')
+    return bool(pattern.match(address))
 
 def get_assets_in(address):
     try:
@@ -212,4 +219,7 @@ def main():
     print(f"Liquidation Threshold: {(1 / health_factor * 100):.2f}%")
 
 if __name__ == "__main__":
-    main()
+    if not WALLET_ADDRESS or not is_valid_ethereum_address(WALLET_ADDRESS):
+        print("Error: Wallet address is missing or invalid. Please fill in a valid address for the WALLET_ADDRESS variable in main.py.")
+    else:
+        main()
